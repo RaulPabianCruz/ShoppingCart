@@ -18,7 +18,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'react/prop-types': 'off',
     'quotes': [
       'error',
       'single',
