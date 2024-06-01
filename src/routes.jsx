@@ -12,11 +12,11 @@ const routes = [
     children: [
       { index: true, element: <Home /> },
       {
-        path: 'shop',
+        path: '/shop',
         element: <Shop />,
       },
       {
-        path: 'cart',
+        path: '/cart',
         element: <Cart />,
       },
     ],
