@@ -1,0 +1,38 @@
+.header {
+    display: flex;
+    width: 900px;
+}
+
+.headerItem {
+    flex: 0 0 auto;
+    align-self: flex-end;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}
+
+.titleName {
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.links {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+}
+
+.itemCount {
+    background-color: lightgray;
+    border-radius: 30px;
+    margin-left: auto;
+}
+
+
