@@ -1,0 +1,46 @@
+.homeContainer {
+    display: flex;
+    padding: 70px 40px 40px 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoContainer{
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-flow: row;
+    grid-gap: 20px;
+    width: 500px;
+    padding: 15px;
+}
+
+.homeHeader {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.homeMsg {
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.homeLink {
+    background-color: #27744E;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 10px;
+    justify-self: center;
+}
+
+.homeLink:hover {
+    color: beige;
+}
+
+.homeImg {
+    height: auto;
+    width: 500px;
+    margin-left: 20px;
+}
