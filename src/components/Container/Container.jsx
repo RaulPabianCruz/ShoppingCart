@@ -1,7 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import CartIcon from '../../assets/cart.svg';
-import Logo from '../../assets/eMartLogo.webp';
+import Logo from '../../assets/store.svg';
 import styles from './Container.module.css';
 
 function Container() {
@@ -13,7 +13,7 @@ function Container() {
   );
 
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <header className={styles.header}>
         <img
           src={Logo}
@@ -38,13 +38,9 @@ function Container() {
         <Link
           to="cart"
           data-testid="cart-link"
-          className={`${styles.links} ${styles.headerItem}`}
+          className={`${styles.links} ${styles.headerItem} ${styles.iconLink}`}
         >
-          <img
-            src={CartIcon}
-            alt="Cart"
-            className={`${styles.icon} ${styles.headerItem}`}
-          />
+          <img src={CartIcon} alt="Cart" className={styles.icon} />
         </Link>
       </header>
       <Outlet context={[cartItems, setCartItems, numOfItems]} />

@@ -1,38 +1,64 @@
-.header {
+.mainContainer {
+    height: 100%;
+    background-color: beige;
     display: flex;
-    width: 900px;
+    flex-direction: column;
+}
+
+.header {
+    padding: 15px;
+    background-color: #27744E;
+    color: black;
+    display: flex;
 }
 
 .headerItem {
-    flex: 0 0 auto;
-    align-self: flex-end;
+    flex: 0 1 auto;
+    align-self: center;
 }
 
 .logo {
-    height: 100px;
-    width: 100px;
+    height: 125px;
+    width: 125px;
 }
 
 .titleName {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     font-style: italic;
 }
 
 .links {
-    margin-left: 10px;
-    padding: 10px;
+    color: black;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.links:hover {
+    color: beige;
+}
+
+.iconLink {
+    display: flex;
+    font-size: 1rem;
+    padding: 0px;
+    margin: 0px 10px 0px 5px;
 }
 
 .icon {
     height: 50px;
     width: 50px;
+    align-self: flex-end;
 }
 
 .itemCount {
-    background-color: lightgray;
+    font-size: 1.2rem;
+    font-weight: bold;
     border-radius: 30px;
+    padding: 10px 20px;
     margin-left: auto;
+    background-color: beige;
 }
 
 
