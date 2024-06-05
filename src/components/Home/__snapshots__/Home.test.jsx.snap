@@ -2,14 +2,16 @@
 
 exports[`Home page content > snapshot > matches snapshot 1`] = `
 <div>
-  <div>
+  <div
+    class="_mainContainer_523845"
+  >
     <header
       class="_header_523845"
     >
       <img
         alt="The e-Mart Logo"
         class="_logo_523845 _headerItem_523845"
-        src="/src/assets/eMartLogo.webp"
+        src="/src/assets/store.svg"
       />
       <h1
         class="_titleName_523845 _headerItem_523845"
@@ -35,26 +37,35 @@ exports[`Home page content > snapshot > matches snapshot 1`] = `
         0
       </p>
       <a
-        class="_links_523845 _headerItem_523845"
+        class="_links_523845 _headerItem_523845 _iconLink_523845"
         data-testid="cart-link"
         href="/cart"
       >
         <img
           alt="Cart"
-          class="_icon_523845 _headerItem_523845"
+          class="_icon_523845"
           src="/src/assets/cart.svg"
         />
       </a>
     </header>
-    <main>
-      <div>
-        <h1>
+    <main
+      class="_homeContainer_345077"
+    >
+      <div
+        class="_infoContainer_345077"
+      >
+        <h1
+          class="_homeHeader_345077"
+        >
           The Catalog With Drip No Cap (Ong frfr)
         </h1>
-        <p>
+        <p
+          class="_homeMsg_345077"
+        >
           The e-Mart contains some of the most 'swag' pieces you could ever hope to find. But we are not just about the drip, our catalog also has a wide selection of the 'useless junk/gag gift' items those Temu shoppers seem to love. This isn't your regular dropshipping site, its worse.
         </p>
         <a
+          class="_homeLink_345077"
           href="/shop"
         >
           Browse the Goodies
@@ -62,6 +73,7 @@ exports[`Home page content > snapshot > matches snapshot 1`] = `
       </div>
       <img
         alt=""
+        class="_homeImg_345077"
         src="/src/assets/ShoppingImg.jpg"
       />
     </main>
