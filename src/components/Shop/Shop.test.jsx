@@ -1,11 +1,32 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import routes from '../../routes';
+import { vi } from 'vitest';
+import useShopItems from './hooks/useShopItems';
+
+const { mockItems } = vi.hoisted(() => {
+  const items = new Array(30);
+  for (let i = 0; i < 30; i += 1) items[i] = { id: i + 1 };
+  return { mockItems: items };
+});
+
+vi.mock('./hooks/useShopItems', () => ({
+  default: vi.fn(),
+}));
+
+vi.mock('../Card/Card.jsx', () => ({
+  default: ({ product }) => <div data-testid="product-card">{product.id}</div>,
+}));
 
 describe('Shop Component', () => {
-  describe('Shop content', () => {
+  describe('Shop component content', () => {
     it('matches snapshot', () => {
+      vi.mocked(useShopItems).mockReturnValue({
+        shopItems: mockItems,
+        error: null,
+        loading: false,
+      });
       const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
 
       const { container } = render(<RouterProvider router={router} />);
@@ -13,70 +34,73 @@ describe('Shop Component', () => {
       expect(container).toMatchSnapshot();
     });
 
-    it('renders all 30 products', () => {
+    it('renders the heading', () => {
+      vi.mocked(useShopItems).mockReturnValue({
+        shopItems: mockItems,
+        error: null,
+        loading: false,
+      });
       const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
+
       render(<RouterProvider router={router} />);
 
-      const productElements = screen.getAllByTestId('product-card');
+      let header = screen.getByRole('heading', {
+        name: "The e-Mart's Top Selection",
+      });
+
+      expect(header).toBeInTheDocument();
+    });
+
+    it('renders all 30 products', () => {
+      vi.mocked(useShopItems).mockReturnValue({
+        shopItems: mockItems,
+        error: null,
+        loading: false,
+      });
+      const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
+
+      render(<RouterProvider router={router} />);
+      let productElements = screen.getAllByTestId('product-card');
 
       expect(productElements.length).toBe(30);
     });
   });
-});
 
-describe('Card Component', () => {
-  describe('Card content', () => {
-    it('renders all card component info', () => {
+  describe('Shop component render logic', () => {
+    it('renders error message when fetch fails', () => {
+      vi.mocked(useShopItems).mockReturnValue({
+        shopItems: mockItems,
+        error: new Error('Error mang.'),
+        loading: true,
+      });
       const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
+
       render(<RouterProvider router={router} />);
+      const errorMsg = screen.getByText('There was an error U_U');
+      const header = screen.queryByRole('heading', {
+        name: "The e-Mart's Top Selection",
+      });
 
-      const productImages = screen.getAllByTestId('product-card-img');
-      const productTitles = screen.getAllByTestId('product-card-title');
-      const productDescriptions = screen.getAllByTestId('product-card-desc');
-      const productPrices = screen.getAllByTestId('product-card-price');
-
-      expect(productImages.length).toBe(30);
-      expect(productTitles.length).toBe(30);
-      expect(productDescriptions.length).toBe(30);
-      expect(productPrices.length).toBe(30);
+      expect(errorMsg).toBeInTheDocument();
+      expect(header).not.toBeInTheDocument();
     });
 
-    it("renders number input and 'Add to Cart' button", () => {
+    it('renders loading message while fetch is still in progress', () => {
+      vi.mocked(useShopItems).mockReturnValue({
+        shopItems: mockItems,
+        error: null,
+        loading: true,
+      });
       const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
+
       render(<RouterProvider router={router} />);
+      const loadMsg = screen.getByText('Loading up the selection!');
+      const header = screen.queryByRole('heading', {
+        name: "The e-Mart's Top Selection",
+      });
 
-      const productQuantities = screen.getAllByRole('input', { name: '1' });
-      const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
-
-      expect(productQuantities.length).toBe(30);
-      expect(addButtons.length).toBe(30);
-    });
-  });
-
-  describe('Card Functionality', () => {
-    it('updates item count display when an item is added', async () => {
-      const user = userEvent.setup();
-      const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
-      render(<RouterProvider router={router} />);
-
-      const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
-      await user.click(addButtons[0]);
-
-      expect(screen.getByTestId('num-of-items').textContent).toBe('1');
-    });
-
-    it('updates item count display based on quantity of item added', async () => {
-      const user = userEvent.setup();
-      const router = createMemoryRouter(routes, { initialEntries: ['/shop'] });
-      render(<RouterProvider router={router} />);
-
-      const productQuantities = screen.getAllByRole('input', { name: '1' });
-      const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
-      await user.click(productQuantities[0]);
-      await user.keyboard('[Backspace][Digit5]');
-      await user.click(addButtons[0]);
-
-      expect(screen.getByTestId('num-of-items').textContent).toBe('5');
+      expect(loadMsg).toBeInTheDocument();
+      expect(header).not.toBeInTheDocument();
     });
   });
 });
