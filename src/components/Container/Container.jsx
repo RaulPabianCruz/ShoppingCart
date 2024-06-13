@@ -8,7 +8,7 @@ function Container() {
   const [cartItems, setCartItems] = useState([]);
 
   const numOfItems = cartItems.reduce(
-    (accumulator, item) => accumulator + item.quantity,
+    (accumulator, item) => accumulator + Number(item.quantity),
     0,
   );
 
