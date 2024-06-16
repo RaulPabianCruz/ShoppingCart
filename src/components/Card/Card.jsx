@@ -6,7 +6,7 @@ function Card({ product }) {
   const [cartItems, setCartItems] = useOutletContext();
 
   function updateCartNumber() {
-    const oldItem = null;
+    let oldItem = null;
     cartItems.forEach((item) => {
       if (item.product.id === product.id) oldItem == item;
     });
@@ -33,15 +33,17 @@ function Card({ product }) {
 
   return (
     <div data-testid="product-card">
-      <img src={product.image} alt="" />
+      <img src={product.image} alt="" data-testid="product-img" />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <div>
-        <h3>{product.price}</h3>
+        <h3>${product.price}</h3>
+        <label htmlFor="quantity">Quantity:</label>
         <input
           type="number"
-          min="0"
+          min="1"
           max="15"
+          id="quantity"
           value={itemQuantity}
           onChange={(e) => setItemQuantity(e.target.value)}
         />
