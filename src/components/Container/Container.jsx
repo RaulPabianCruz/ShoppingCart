@@ -14,35 +14,33 @@ function Container() {
 
   return (
     <div className={styles.mainContainer}>
-      <header className={styles.header}>
+      <nav className={styles.nav}>
         <img
           src={Logo}
           alt="The e-Mart Logo"
-          className={`${styles.logo} ${styles.headerItem}`}
+          className={`${styles.logo} ${styles.navItem}`}
         />
-        <h1 className={`${styles.titleName} ${styles.headerItem}`}>
-          The e-Mart!
-        </h1>
-        <Link to="/" className={`${styles.links} ${styles.headerItem}`}>
+        <h1 className={`${styles.titleName} ${styles.navItem}`}>The e-Mart!</h1>
+        <Link to="/" className={`${styles.links} ${styles.navItem}`}>
           Home
         </Link>
-        <Link to="shop" className={`${styles.links} ${styles.headerItem}`}>
+        <Link to="shop" className={`${styles.links} ${styles.navItem}`}>
           Shop
         </Link>
         <p
           data-testid="num-of-items"
-          className={`${styles.itemCount} ${styles.headerItem}`}
+          className={`${styles.itemCount} ${styles.navItem}`}
         >
           {numOfItems}
         </p>
         <Link
           to="cart"
           data-testid="cart-link"
-          className={`${styles.links} ${styles.headerItem} ${styles.iconLink}`}
+          className={`${styles.links} ${styles.navItem} ${styles.iconLink}`}
         >
           <img src={CartIcon} alt="Cart" className={styles.icon} />
         </Link>
-      </header>
+      </nav>
       <Outlet context={[cartItems, setCartItems, numOfItems]} />
     </div>
   );

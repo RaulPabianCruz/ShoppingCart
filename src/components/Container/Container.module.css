@@ -5,14 +5,14 @@
     flex-direction: column;
 }
 
-.header {
+.nav {
     padding: 15px;
     background-color: #27744E;
     color: black;
     display: flex;
 }
 
-.headerItem {
+.navItem {
     flex: 0 1 auto;
     align-self: center;
 }
