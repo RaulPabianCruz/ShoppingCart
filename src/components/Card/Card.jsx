@@ -1,5 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
+import styles from './Card.module.css';
 
 function Card({ product }) {
   const [itemQuantity, setItemQuantity] = useState(1);
@@ -32,22 +33,32 @@ function Card({ product }) {
   }
 
   return (
-    <div data-testid="product-card">
-      <img src={product.image} alt="" data-testid="product-img" />
-      <h2>{product.title}</h2>
-      <p>{product.description}</p>
-      <div>
-        <h3>${product.price}</h3>
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          min="1"
-          max="15"
-          id="quantity"
-          value={itemQuantity}
-          onChange={(e) => setItemQuantity(e.target.value)}
-        />
-        <button onClick={updateCartNumber}>Add to Cart</button>
+    <div data-testid="product-card" className={styles.cardContainer}>
+      <img
+        src={product.image}
+        alt=""
+        data-testid="product-img"
+        className={styles.cardImg}
+      />
+      <h2 className={styles.cardTitle}>{product.title}</h2>
+      <p className={styles.cardDesc}>{product.description}</p>
+      <div className={styles.cardOptions}>
+        <h3 className={styles.cardPrice}>${product.price}</h3>
+        <div className={styles.qtyContainer}>
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            min="1"
+            max="15"
+            id="quantity"
+            value={itemQuantity}
+            onChange={(e) => setItemQuantity(e.target.value)}
+            className={styles.cardInput}
+          />
+          <button onClick={updateCartNumber} className={styles.cardButton}>
+            Add to Cart
+          </button>
+        </div>
       </div>
     </div>
   );
