@@ -1,5 +1,6 @@
 import useShopItems from './hooks/useShopItems';
 import Card from '../Card/Card';
+import styles from './Shop.module.css';
 
 function Shop() {
   const { shopItems, error, loading } = useShopItems();
@@ -9,9 +10,9 @@ function Shop() {
   if (loading) return <p>Loading up the selection!</p>;
 
   return (
-    <div>
-      <h1>The e-Mart's Top Selection</h1>
-      <div>
+    <div className={styles.shopContainer}>
+      <h1 className={styles.shopHeader}>The e-Mart's Top Selection</h1>
+      <div className={styles.selectionContainer}>
         {shopItems.map((item) => {
           return <Card product={item} key={item.id} />;
         })}

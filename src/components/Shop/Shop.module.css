@@ -1,0 +1,21 @@
+.shopContainer {
+    color: black;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shopHeader {
+    background-color: white;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px dashed black; 
+}
+
+.selectionContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 50px;
+}
