@@ -41,7 +41,7 @@ function Container() {
           <img src={CartIcon} alt="Cart" className={styles.icon} />
         </Link>
       </nav>
-      <Outlet context={[cartItems, setCartItems, numOfItems]} />
+      <Outlet context={[cartItems, setCartItems]} />
     </div>
   );
 }
