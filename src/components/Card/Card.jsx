@@ -9,7 +9,7 @@ function Card({ product }) {
   function updateCartNumber() {
     let oldItem = null;
     cartItems.forEach((item) => {
-      if (item.product.id === product.id) oldItem == item;
+      if (item.product.id === product.id) oldItem = item;
     });
 
     if (oldItem !== null) {
@@ -52,7 +52,7 @@ function Card({ product }) {
             max="15"
             id="quantity"
             value={itemQuantity}
-            onChange={(e) => setItemQuantity(e.target.value)}
+            onChange={(e) => setItemQuantity(Number(e.target.value))}
             className={styles.cardInput}
           />
           <button onClick={updateCartNumber} className={styles.cardButton}>
