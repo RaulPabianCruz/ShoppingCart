@@ -1,0 +1,39 @@
+.itemContainer {
+    height: 70px;
+    background-color: white;
+    border: 2px dashed black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.itemSection {
+    font-weight: bold;
+    align-self: center;
+}
+
+.qtyInput {
+    font-size: 1rem;
+}
+
+.priceSection {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.itemButton {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteImg {
+    width: 30px;
+    height: 30px;
+}
