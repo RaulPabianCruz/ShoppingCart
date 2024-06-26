@@ -20,8 +20,8 @@ describe('Item component', () => {
       vi.mocked(useOutletContext).mockReturnValue([[mockItem], null]);
       render(<Item key="1" item={mockItem} />);
 
-      const title = screen.getByText('Product: title');
-      const qty = screen.getByRole('spinbutton', { name: 'qty:' });
+      const title = screen.getByText('Item: title');
+      const qty = screen.getByRole('spinbutton', { name: 'Qty:' });
 
       expect(title).toBeInTheDocument();
       expect(qty).toBeInTheDocument();
@@ -79,7 +79,7 @@ describe('Item component', () => {
       vi.mocked(useOutletContext).mockReturnValue([[mockItem], setCartItems]);
       render(<Item key="1" item={mockItem} />);
 
-      const qty = screen.getByRole('spinbutton', { name: 'qty:' });
+      const qty = screen.getByRole('spinbutton', { name: 'Qty:' });
       await user.click(qty);
       await user.keyboard('[Digit1]');
 
