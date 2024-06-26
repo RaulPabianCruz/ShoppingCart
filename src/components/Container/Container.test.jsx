@@ -3,13 +3,22 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import routes from '../../routes';
 
-describe('Container Content', () => {
-  describe('snapshot', () => {
+describe('Container Component', () => {
+  describe('Container content', () => {
     it('matches snapshot', () => {
       const router = createMemoryRouter(routes, { intialEntries: ['/'] });
       const { container } = render(<RouterProvider router={router} />);
 
       expect(container).toMatchSnapshot();
+    });
+
+    it('renders cart item counter', () => {
+      const router = createMemoryRouter(routes, { intialEntries: ['/'] });
+      render(<RouterProvider router={router} />);
+
+      const itemCount = screen.getByTestId('num-of-items');
+
+      expect(itemCount.textContent).toBe('0');
     });
   });
 
@@ -38,7 +47,7 @@ describe('Container Content', () => {
       const router = createMemoryRouter(routes, { intialEntries: ['/'] });
       render(<RouterProvider router={router} />);
 
-      const CartLink = screen.getByTestId('cart-link');
+      const CartLink = screen.getByRole('link', { name: 'Cart' });
 
       expect(CartLink).toBeInTheDocument();
       expect(CartLink).toHaveAttribute('href', '/cart');
