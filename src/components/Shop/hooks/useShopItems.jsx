@@ -11,7 +11,7 @@ function useShopItems() {
         if (!response.ok) throw new Error('Response status not ok.');
         return response.json();
       })
-      .then((items) => setShopItems(items))
+      .then((parsedData) => setShopItems(parsedData))
       .catch((error) => {
         setError(error);
         console.log(error);
