@@ -1,5 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Card.module.css';
 
 function Card({ product }) {
@@ -46,16 +47,17 @@ function Card({ product }) {
       <div className={styles.cardOptions}>
         <h3 className={styles.cardPrice}>${product.price}</h3>
         <div className={styles.qtyContainer}>
-          <label htmlFor="quantity">Quantity:</label>
-          <input
-            type="number"
-            min="1"
-            max="15"
-            id="quantity"
-            value={itemQuantity}
-            onChange={(e) => setItemQuantity(Number(e.target.value))}
-            className={styles.cardInput}
-          />
+          <label>
+            Quantity:
+            <input
+              type="number"
+              min="1"
+              max="15"
+              value={itemQuantity}
+              onChange={(e) => setItemQuantity(Number(e.target.value))}
+              className={styles.cardInput}
+            />
+          </label>
           <button onClick={updateCartItems} className={styles.cardButton}>
             Add to Cart
           </button>
@@ -64,5 +66,16 @@ function Card({ product }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    category: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired,
+};
 
 export default Card;
