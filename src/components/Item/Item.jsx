@@ -1,5 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import DeleteIcon from '../../assets/delete.svg';
+import PropTypes from 'prop-types';
 import styles from './Item.module.css';
 
 function Item({ item }) {
@@ -27,16 +28,17 @@ function Item({ item }) {
     <div className={styles.itemContainer}>
       <p className={styles.itemSection}>Item: {item.product.title}</p>
       <div className={styles.itemSection}>
-        <label htmlFor="quantity">Qty:</label>
-        <input
-          type="number"
-          min="1"
-          max="15"
-          id="quantity"
-          value={item.quantity}
-          onChange={(e) => updateQuantity(Number(e.target.value))}
-          className={styles.qtyInput}
-        />
+        <label>
+          Qty:
+          <input
+            type="number"
+            min="1"
+            max="15"
+            value={item.quantity}
+            onChange={(e) => updateQuantity(Number(e.target.value))}
+            className={styles.qtyInput}
+          />
+        </label>
       </div>
       <div className={styles.priceSection}>
         <p>Price: ${itemTotalPrice.toFixed(2)}</p>
@@ -52,5 +54,19 @@ function Item({ item }) {
     </div>
   );
 }
+
+Item.propTypes = {
+  item: PropTypes.shape({
+    product: PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      category: PropTypes.string,
+      description: PropTypes.string,
+      image: PropTypes.string,
+    }),
+    quantity: PropTypes.number,
+  }).isRequired,
+};
 
 export default Item;
